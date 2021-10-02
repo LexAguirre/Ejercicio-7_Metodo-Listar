@@ -5,7 +5,7 @@ import inventory from "./lote.js";
 
 class App{
     constructor(){
-        this.lote = new inventory();
+        let lote = new inventory();
 
         let btnAdd = document.getElementById('btnAdd');
         btnAdd.addEventListener('click', this.addProduct);
@@ -33,12 +33,13 @@ class App{
 
         let producto = new Product(codigo, nombre,cantidad, costo);
 
-        console.log(this.lote.agregar(producto));
-        if(this.lote.agregar(producto) === "lleno") {
+        let funcion = lote.agregar(producto);
+        
+        if(funcion === "lleno") {
             document.getElementById('detalles').innerHTML += `
             <p>Se agotaron los espacios por lo que el producto ${producto.codigo} no se agrego</p>
 
-        `;} else if(this.lote.agregar(producto) === "igual") {
+        `;} else if(funcion === "igual") {
             document.getElementById('detalles').innerHTML += `
             <p>Ya hay un producto con el codigo ${producto.codigo} por lo que no se agrego</p>
 
