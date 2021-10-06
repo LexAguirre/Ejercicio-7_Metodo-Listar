@@ -16,6 +16,7 @@ export default class inventory{
         } else if(this.listSize == 20){
             return "lleno";
         } else {
+            /*
             //Si ya tiene datos se crea la variable temporal
             //Se comienza a recorrer la lista desde inicio
             let temp = this.inicio;
@@ -27,10 +28,21 @@ export default class inventory{
             }
 
             //aumentamos la lista y asignamos el nuevo en el siguiente del ultimo elemnto
-            this.listSize++;
+            
             temp.siguiente = nuevo;
+            */
+           this.listSize++;
+           this._agregar(nuevo, this.inicio)
         }
     
+    }
+
+    _agregar(nuevo, ultimo){
+        if(ultimo.siguiente == null){
+            ultimo.siguiente = nuevo;
+        } else {
+            this._agregar(nuevo, ultimo.siguiente)
+        }
     }
  
     buscar(codigo){ 
@@ -49,13 +61,13 @@ export default class inventory{
        if(this.listSize === 0){
             return "vacio";
        } else {
-            while(temp){
+            while(temp != null){
                 pos++
                 dato += `<p>Elemento Num.${pos}: Codigo ${temp.codigo} Nombre ${temp.nombre}<p>`
                 temp = temp.siguiente;
             }
        }
-
+       console.log(dato);
        return dato;
     }    
 
